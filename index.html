@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+<script type"text/javascript">
+    // !IMPORTANT : Please delete all comment (NOTE and TODO) after you understand and/or implement it!
+    //************************************************************************************************
+
+    // NOTE : Initial variable which used to store temporary client key, user name and password
+    window.rainbowSettings = {
+        x: "",
+        y: "",
+        z: "1716fc4631a7806e26f89d67aacfe0e5ac0ef221"
+    };
+
+    // NOTE : This event is used to listen activity related to login purposes
+    document.addEventListener("hubChatAppReady", login);
+
+    // NOTE : This event is used to listen activity when user has successfully logged in
+    document.addEventListener("rainbowSDKExposed", managementSetup);
+
+    function login(e) {
+         var myPromise = new Promise(function (resolve, reject) {
+             setTimeout(function () {
+                 resolve("Success!");
+             }, 1000);
+         });
+
+         myPromise.then(function (successMessage) {
+             // TODO : Set the user (who will use this app chat) credential information below (x = username, y = password) by using direct prompt or ajax call based on needed
+             window.rainbowSettings.x = "jgimenez@gotor.com";
+             window.rainbowSettings.y = "getawaY007*";
+             var myCustomEvent = new Event('onUpdateRainbowOptionEvent');
+             document.dispatchEvent(myCustomEvent);
+         });
+     }
+
+    function managementSetup(e) {
+        document.addEventListener('currentUserOnPresenceChanged', function (e) {
+             // TODO: If you want to manage the present user status, you may use this event to update your application
+        });
+     }
+
+     // NOTE : This function is used to authenticate your site and client key before able to use App Chat
+     !function () { var t = window, e = document; function a() { var t = location.href + "|" + window.rainbowSettings.z, a = e.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = "https://api.rapidrainbow.com/api/v1/widget/auth/" + btoa(t); var n = e.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n) } t.attachEvent ? t.attachEvent("onload", a) : t.addEventListener("load", a, !1) }();
+</script>
+
+</head>
+<body>
+	<h1>Rainbow Testing</h1>
+</body>
+</html>
